@@ -28,7 +28,7 @@ contract CriptoCachipun {
     uint256 public deadline;
     uint256 public apuestaFijada;
 
-    //Creación de la variable para "cerrar" el contrato una vez termine el juego
+    //Creación de la variable para "cerrar" el contrato una vez termine el juego (cambio de estado)
     bool public juegoTerminado;
 
     mapping(address => DatosJugador) public jugadores;
@@ -177,6 +177,7 @@ contract CriptoCachipun {
         }
     }
 
+    //Función que determina quien es el ganador del juego
     function determinarGanador()
         internal
     {
@@ -218,6 +219,7 @@ contract CriptoCachipun {
         emit Ganador(ganador, premio);
     }
 
+    //Función para reclamar que el tiempo ha terminado (para evitar el caso de un solo "reveal")
     function reclamarTimeout()
         external
         juegoActivo
